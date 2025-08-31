@@ -4,9 +4,9 @@ use std::path::Path;
 use crate::record;
 
 pub struct Datafile {
-    offset: u32,
-    id: u32,
-    file: std::fs::File
+    pub offset: u32,
+    pub id: u32,
+    pub file: std::fs::File
 }
 
 
@@ -30,7 +30,8 @@ impl Datafile {
 
     pub fn read(&mut self, pos: u32, size: u32) -> record::Record {
         let mut buffer = vec![0; size as usize];
-        self.file.seek(std::io::SeekFrom::Start(pos as u64)).unwrap();
+        let start = pos - size;
+        self.file.seek(std::io::SeekFrom::Start(start as u64)).unwrap();
         self.file.read_exact(&mut buffer).unwrap();
         record::Record::decode(&buffer)
     }
