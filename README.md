@@ -1,5 +1,7 @@
 # YAKV - storage engine in Rust
 
+YAKV is built upon bitcask which is a Log-Structured Hash Table for Fast Key/Value Data.It is built on taking inspiration from https://riak.com/assets/bitcask-intro.pdf and https://github.com/mr-karan/barreldb. 
+
 Design philosophy on YAKV:
 
 1. Records in YAKV are stored in little endian format. It is interesting as to why they are stored in such a format.
